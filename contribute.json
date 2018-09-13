@@ -1,0 +1,23 @@
+{
+  "name": "IMSC",
+  "description": "This repo contains examples illustrating usage of [IMSC](https://www.w3.org/TR/ttml-imsc1.0.1/), a popular subtitle and caption delivery format",
+  "repository": {
+    "url": "https://github.com/mdn/imsc",
+    "license": "CC0"
+  },
+  "participate": {
+    "home": "https://developer.mozilla.org/",
+    "docs": "https://developer.mozilla.org/docs/Related/IMSC",
+    "mailing-list": "https://discourse.mozilla.org/c/mdn",
+    "irc": "irc://irc.mozilla.org/mdn"
+  },
+  "keywords": [
+    "xml",
+    "media",
+    "video",
+    "subtitles",
+    "captions",
+    "audio",
+    "text tracks"
+  ]
+}

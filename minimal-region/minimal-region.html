@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>IMSC Basic: minimal-region</title>
+  <script src="https://unpkg.com/imsc@1.1.0-beta.2/build/umd/imsc.all.min.js"></script>
+  <style>
+    body {
+      font: 1.2em Helvetica, Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+    }
+
+    textarea {
+      font-family: monospace;
+      display: block;
+      margin-bottom: 10px;
+      height: 160px;
+      background-color: #F4F7F8;
+      border: none;
+      border-left: 6px solid #558ABB;
+      color: #4D4E53;
+      width: 90%;
+      max-width: 700px;
+      padding: 10px 10px 0px;
+      font-size: 90%;
+    }
+
+    textarea:nth-of-type(1) {
+      height: 120px
+    }
+
+    textarea:nth-of-type(2) {
+      height: 80px
+    }
+
+    .playable-buttons {
+      text-align: right;
+      width: 90%;
+      max-width: 700px;
+      padding: 5px 10px 5px 26px;
+      font-size: 100%;
+    }
+
+    section {
+      width: 90%;
+      max-width: 700px;
+      border: 1px solid #4D4E53;
+      border-radius: 2px;
+      padding: 10px 14px 10px 10px;
+      margin-bottom: 10px;
+    }
+
+    section input {
+      display: block;
+      margin: 5px;
+    }
+
+    .box {
+      width: 500px;
+      border: 2px dotted rgb(96, 139, 168);
+    }
+
+    .box>* {
+      border: 2px solid rgb(96, 139, 168);
+      border-radius: 5px;
+      background-color: rgba(96, 139, 168, .2);
+      padding: 10px;
+    }
+    #render-div {
+      border: 1px solid #558ABB;
+      height:288px;
+      width:512px;
+      margin-bottom: 10px;
+      background-color: grey;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+ <div id="render-div"></div>
+  </section>
+ 
+  <textarea class="playable-style-layout">
+<region tts:origin="10% 80%"
+        tts:extent="80% 20%"
+        xml:id="bottom" />      
+<region tts:origin="10% 10%"
+        tts:extent="80% 20%"
+        xml:id="top" />
+   </textarea>
+  
+  <textarea id="code" class="playable-content">
+ <p region="bottom" tts:backgroundColor="black">
+       Hello, I am Mork from Ork
+ </p>
+   </textarea>
+  <div class="playable-buttons">
+    <input id="reset" type="button" value="Reset">
+  </div>
+  <script>
+if (!String.format) {
+  String.format = function (format) {
+    var args = Array.prototype.slice.call(arguments, 1);
+    return format.replace(/{(\d+)}/g, function (match, number) {
+      return typeof args[number] != "undefined" ? args[number] : match;
+    });
+  };
+}
+
+var xmlTemplate = '<tt xmlns="http://www.w3.org/ns/ttml"\
+    xmlns:tts="http://www.w3.org/ns/ttml#styling"\
+    xml:lang="en">\
+  <head>\
+    <layout>\
+      {0}\
+    </layout>\
+ </head>\
+ <body>\
+   <div>\
+    {1}\
+   </div>\
+ </body>\
+</tt>';
+
+var renderContainer = document.querySelector("#render-div");
+var textareaContent = document.querySelector(".playable-content");
+var textareaHead = document.querySelector(".playable-style-layout");
+var reset = document.getElementById("reset");
+var contentCode = textareaContent.value;
+var headCode = textareaHead.value;
+function fillCode() {
+  var source = String.format(xmlTemplate, textareaHead.value, textareaContent.value);
+  var doc = imsc.fromXML(source);
+  var t = doc.getMediaTimeEvents();
+  var isd = imsc.generateISD(doc, t[1]);
+  var myDiv = document.getElementById("render-div");
+  if (myDiv.children.length) {
+    myDiv.removeChild(myDiv.children[0]);
+  }
+  imsc.renderHTML(isd, renderContainer);
+};
+
+reset.addEventListener("click", function () {
+  textareaContent.value = contentCode;
+  textareaHead.value = headCode;
+  fillCode();
+});
+
+textareaContent.addEventListener("input", fillCode);
+textareaHead.addEventListener("input", fillCode);
+window.addEventListener("load", fillCode);
+  </script>
+</body>
+</html>

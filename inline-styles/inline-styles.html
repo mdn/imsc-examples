@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>IMSC Dynamic preview</title>
+  <script src="https://unpkg.com/imsc@1.1.0-beta.2/build/umd/imsc.all.min.js"></script>
+  <style>
+    body {
+      font: Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    textarea {
+      display: none;
+    }
+
+    #render-div {
+      height:288px;
+      width:512px;
+      background-color: black;
+    }
+  </style>
+</head>
+
+<body>
+    <div id="render-div"></div>
+ 
+   <textarea id="code">
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xml:lang="en">
+  <body>
+    <div>
+      <p>
+      <span tts:color="red" tts:fontFamily="proportionalSansSerif">Hello</span>,<br/>
+      I am <span tts:color="blue">Mork</span><br/>
+      from <span tts:color="green" tts:fontSize="150%">Ork</span>
+      </p>
+    </div>  
+  </body>
+</tt>
+  </textarea>
+<script>
+        var source = document.getElementById('code').textContent;
+        var doc = imsc.fromXML(source);
+        var t = doc.getMediaTimeEvents();
+        var isd = imsc.generateISD(doc, t[1]);
+        var vdiv = document.getElementById('render-div');
+        imsc.renderHTML(isd, vdiv);
+  </script>
+  
+  
+</body>
+</html>

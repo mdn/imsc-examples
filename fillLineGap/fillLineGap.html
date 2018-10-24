@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>IMSC Dynamic preview</title>
+  <script src="https://unpkg.com/imsc@1.1.0-beta.2/build/umd/imsc.all.min.js"></script>
+  <style>
+    body {
+      font: Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    textarea {
+      display: none;
+    }
+
+    #render-div {
+      height:256px;
+      width:512px;
+      background-color: grey;
+    }
+  </style>
+</head>
+
+<body>
+    <div id="render-div"></div>
+ 
+   <textarea id="code">
+<tt xmlns="http://www.w3.org/ns/ttml"
+    xmlns:tts="http://www.w3.org/ns/ttml#styling"
+    xmlns:itts="http://www.w3.org/ns/ttml/profile/imsc1#styling"
+    xmlns:ttp="http://www.w3.org/ns/ttml#parameter"
+    xml:lang="en"
+    ttp:cellResolution="32 10">
+  <head>
+    <styling>
+      <style xml:id="s1" tts:backgroundColor="black"/>
+    </styling>
+    <layout>
+      <region xml:id="top" tts:origin="5% 5%" tts:extent="90% 40%" tts:textAlign="center" tts:displayAlign="before"/>
+      <region xml:id="bottom" tts:origin="5% 55%" tts:extent="90% 40%" tts:textAlign="center" tts:displayAlign="after"/>
+    </layout>
+  </head>
+  <body tts:fontSize="1c" tts:lineHeight="120%">
+    <div>
+      <p region="top">
+      <span style="s1">Gaps between lines appear without itts:fillLineGap</span>
+      </p>
+      <p region="bottom" itts:fillLineGap="true">
+      <span style="s1">No gaps between lines appear with itts:fillLineGap</span>
+      </p>
+    </div>  
+  </body>
+</tt>
+  </textarea>
+<script>
+        var source = document.getElementById('code').textContent;
+        var doc = imsc.fromXML(source);
+        var t = doc.getMediaTimeEvents();
+        var isd = imsc.generateISD(doc, t[1]);
+        var vdiv = document.getElementById('render-div');
+        imsc.renderHTML(isd, vdiv);
+  </script>
+  
+  
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>IMSC Dynamic preview</title>
+  <script src="https://unpkg.com/imsc@1.1.0-beta.2/build/umd/imsc.all.min.js"></script>
+  <style>
+    body {
+      font: Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    textarea {
+      display: none;
+    }
+
+    #render-div {
+      height:256px;
+      width:512px;
+      background-color: grey;
+    }
+  </style>
+</head>
+
+<body>
+    <div id="render-div"></div>
+ 
+   <textarea id="code">
+<tt xmlns="http://www.w3.org/ns/ttml"
+    xmlns:tts="http://www.w3.org/ns/ttml#styling"
+    xmlns:itts="http://www.w3.org/ns/ttml/profile/imsc1#styling"
+    xmlns:ttp="http://www.w3.org/ns/ttml#parameter"
+    xmlns:ebutts="urn:ebu:tt:style"
+    xml:lang="en"
+    ttp:cellResolution="32 10">
+  <head>
+    <styling>
+      <style xml:id="s1" tts:backgroundColor="black" tts:color="white"/>
+    </styling>
+    <layout>
+      <region xml:id="top" tts:origin="5% 5%" tts:extent="90% 40%" tts:textAlign="center" tts:displayAlign="before"/>
+      <region xml:id="bottom" tts:origin="5% 55%" tts:extent="90% 40%" tts:textAlign="center" tts:displayAlign="after"/>
+    </layout>
+  </head>
+  <body>
+    <div>
+      <p region="top" ebutts:linePadding="0.5c">
+      <span style="s1">Line background extends slightly with ebutts:linePadding</span>
+      </p>
+      <p region="bottom">
+      <span style="s1">Line background ends abruptly without ebutts:linePadding</span>
+      </p>
+    </div>  
+  </body>
+</tt>
+  </textarea>
+<script>
+        var source = document.getElementById('code').textContent;
+        var doc = imsc.fromXML(source);
+        var t = doc.getMediaTimeEvents();
+        var isd = imsc.generateISD(doc, t[1]);
+        var vdiv = document.getElementById('render-div');
+        imsc.renderHTML(isd, vdiv);
+  </script>
+  
+  
+</body>
+</html>

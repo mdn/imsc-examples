@@ -16,7 +16,7 @@
     }
 
     #render-div {
-      height:288px;
+      height:64px;
       width:512px;
       background-color: black;
     }
@@ -27,13 +27,11 @@
     <div id="render-div"></div>
  
    <textarea id="code">
-<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xml:lang="en">
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling" xml:lang="en" tts:extent="512px 128px">
   <body>
     <div>
-      <p>
-      <span tts:color="red" tts:fontFamily="proportionalSansSerif">Hello</span>,<br/>
-      I am <span tts:color="blue">Mork</span><br/>
-      from <span tts:color="green" tts:fontSize="150%">Ork</span>
+      <p tts:textAlign="center" tts:fontSize="64px" tts:color="red" tts:fontFamily="proportionalSansSerif" tts:fontStyle="italic">
+      Hello, I am Mork from Ork
       </p>
     </div>  
   </body>

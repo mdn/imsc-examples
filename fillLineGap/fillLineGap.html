@@ -25,35 +25,48 @@
 
 <body>
     <div id="render-div"></div>
- 
-   <textarea id="code">
-<tt xmlns="http://www.w3.org/ns/ttml"
-    xmlns:tts="http://www.w3.org/ns/ttml#styling"
-    xmlns:itts="http://www.w3.org/ns/ttml/profile/imsc1#styling"
-    xmlns:ttp="http://www.w3.org/ns/ttml#parameter"
-    xml:lang="en"
-    ttp:cellResolution="32 10">
-  <head>
-    <styling>
-      <style xml:id="s1" tts:backgroundColor="black"/>
-    </styling>
-    <layout>
-      <region xml:id="top" tts:origin="5% 5%" tts:extent="90% 40%" tts:textAlign="center" tts:displayAlign="before"/>
-      <region xml:id="bottom" tts:origin="5% 55%" tts:extent="90% 40%" tts:textAlign="center" tts:displayAlign="after"/>
-    </layout>
-  </head>
-  <body tts:fontSize="1c" tts:lineHeight="120%">
-    <div>
-      <p region="top">
-      <span style="s1">Gaps between lines appear without itts:fillLineGap</span>
-      </p>
-      <p region="bottom" itts:fillLineGap="true">
-      <span style="s1">No gaps between lines appear with itts:fillLineGap</span>
-      </p>
-    </div>  
-  </body>
-</tt>
-  </textarea>
+    <textarea id="code">
+      <tt xmlns="http://www.w3.org/ns/ttml"
+          xmlns:tts="http://www.w3.org/ns/ttml#styling"
+          xmlns:itts="http://www.w3.org/ns/ttml/profile/imsc1#styling"
+          xml:lang="en">
+          <head>
+            <styling>
+             <style xml:id="defaultStyle" 
+                    tts:fontSize="100%"
+                    tts:lineHeight="120%"/>                      
+             <style xml:id="spanStyle" 
+                    tts:backgroundColor="black"
+                    tts:color="white"/>  
+             <style xml:id="fillGap"
+                   itts:fillLineGap="true"/>                   
+            </styling>
+           <layout>
+           <region xml:id="top" 
+                   tts:origin="5% 5%" 
+                   tts:extent="90% 40%" 
+                   tts:textAlign="center" 
+                   tts:displayAlign="before"/>
+           <region xml:id="bottom" 
+                  tts:origin="5% 55%" 
+                  tts:extent="90% 40%" 
+                  tts:textAlign="center" 
+                  tts:displayAlign="after"/>
+          </layout>
+        </head>
+       <body style="defaultStyle">
+        <div>
+          <p region="top">
+            <span style="spanStyle">Without itts:fillLineGap<br/>Gaps between lines appear.</span>
+          </p>
+          <p region="bottom" style="fillGap">
+            <span style="spanStyle">With itts:fillLineGap<br/>Gaps between lines are "filled".<br/></span>
+          </p>
+          </div>  
+       </body>
+      </tt>
+     </textarea> 
+
 <script>
         var source = document.getElementById('code').textContent;
         var doc = imsc.fromXML(source);
@@ -62,7 +75,6 @@
         var vdiv = document.getElementById('render-div');
         imsc.renderHTML(isd, vdiv);
   </script>
-  
-  
+   
 </body>
 </html>

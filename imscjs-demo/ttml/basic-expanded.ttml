@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tt xmlns="http://www.w3.org/ns/ttml" xmlns:tts="http://www.w3.org/ns/ttml#styling"
+    xmlns:ttp="http://www.w3.org/ns/ttml#parameter" xml:lang="en" ttp:timeBase="media">
+    <head>
+        <styling>
+            <style xml:id="defaultStyle" tts:fontFamily="Verdana, Arial" tts:fontSize="100%"
+                tts:textAlign="center"/>
+            <style xml:id="alignStart" tts:textAlign="start"/>
+            <style xml:id="alignCenter" tts:textAlign="center"/>
+            <style xml:id="alignEnd" tts:textAlign="end"/>
+            <style xml:id="textWhite" tts:color="#FFFFFF"/>
+            <style xml:id="titleHeading" tts:fontSize="300%"/>
+            <style xml:id="spanDefaultStyle" tts:backgroundColor="#000000" tts:color="#FFFFFF"/>
+            <style xml:id="monoFont" tts:fontFamily="Lucida Console, Monaco, monospace"/>
+            <style xml:id="sansserifFont" tts:fontFamily="Impact, Charcoal, sans-serif"/>
+            <style xml:id="comicFont" tts:fontFamily="Comic Sans MS, cursive, sans-serif"/>
+            <style xml:id="blueText" tts:color="#00FFFF" tts:backgroundColor="#000000"/>
+            <style xml:id="limeText" tts:color="#00FF00" tts:backgroundColor="#000000"/>
+            <style xml:id="fuchsiaText" tts:color="#FF00FF" tts:backgroundColor="#000000"/>
+            <style xml:id="yellowText" tts:color="#FFFF00" tts:backgroundColor="#000000"/>
+        </styling>
+        <layout>
+            <region xml:id="rTop" tts:origin="10% 10%" tts:extent="80% 80%"
+                tts:displayAlign="before"/>
+            <region xml:id="rCenter" tts:origin="10% 10%" tts:extent="80% 80%"
+                tts:displayAlign="center"/>
+            <region xml:id="rBottom" tts:origin="10% 10%" tts:extent="80% 80%"
+                tts:displayAlign="after"/>
+        </layout>
+    </head>
+    <body style="defaultStyle">
+        <div>
+            <p xml:id="p1" begin="00:00:01" end="00:00:03" region="rCenter" style="alignCenter">
+                <span style="titleHeading">IMSC Demo</span>
+            </p>
+            <p xml:id="p2" begin="00:00:03" end="00:00:05" region="rBottom" style="alignCenter">
+                <span style="spanDefaultStyle">You </span>
+                <span style="blueText">can</span>
+                <span style="yellowText"> apply</span>
+                <span style="fuchsiaText"> different</span>
+                <span style="limeText"> colors, </span>
+            </p>
+            <p xml:id="p3" begin="00:00:05" end="00:00:07" region="rBottom" style="alignCenter">
+                <span style="monoFont">use</span>
+                <span style="sansserifFont"> different</span>
+                <span style="comicFont"> fonts,</span>
+            </p>
+            <p xml:id="p4" begin="00:00:07" end="00:00:09" region="rBottom" style="alignCenter">
+                <span>set </span>
+                <span tts:fontSize="150%">the</span>
+                <span tts:fontSize="200%"> font size.</span>
+            </p>
+            <p xml:id="p5" begin="00:00:09" end="00:00:11" region="rBottom" style="alignStart">
+                <span style="spanDefaultStyle">Align at the start, </span>
+                <br/>
+            </p>
+            <p xml:id="p6" begin="00:00:11" end="00:00:13" region="rBottom" style="alignCenter">
+                <span style="spanDefaultStyle">center and</span>
+            </p>
+            <p xml:id="p7" begin="00:00:13" end="00:00:15" region="rBottom" style="alignEnd">
+                <span style="spanDefaultStyle">end</span>
+                <br/>
+            </p>
+            <p xml:id="p8" begin="00:00:15" end="00:00:17" region="rTop" style="alignCenter">
+                <span style="spanDefaultStyle">or vertically at the top, </span>
+                <br/>
+            </p>
+            <p xml:id="p9" begin="00:00:17" end="00:00:19" region="rCenter" style="alignCenter">
+                <span style="spanDefaultStyle">center and </span>
+            </p>
+            <p xml:id="p10" begin="00:00:19" end="00:00:21" region="rBottom" style="alignCenter">
+                <span style="spanDefaultStyle">bottom.</span>
+            </p>
+        </div>
+    </body>
+</tt>

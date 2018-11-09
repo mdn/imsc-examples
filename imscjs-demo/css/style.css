@@ -1,0 +1,17 @@
+body {
+  margin: 20px;
+}
+
+#videoContainer {
+  position: absolute;
+}
+
+#render-div {
+  display: flex;
+  border: 1px solid #558abb;
+  height: 288px;
+  width: 512px;
+  margin-bottom: 10px;
+  position: absolute;
+  pointer-events: none;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta name="description" content="imsc-player-demo">
+    <meta charset="utf-8">
+    <title>imscJS demo</title>
+    <script src="https://unpkg.com/imsc@1.1.0-beta.2/build/umd/imsc.all.min.js"></script>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div>
+      <div id="videoContainer">
+        <video src="../videos/coffee.mp4"
+               id="imscVideo"
+               height="288px"
+               width="512px"
+              muted loop controls>
+          <track src="ttml/basic-expanded.ttml"
+                 kind="subtitles"
+                 label="Expanded TTML Sample"
+                 srclang="en"/>
+        </video>
+      </div>
+      <div id="render-div"></div>
+    </div>
+    <script src="js/index.js"></script>
+  </body>
+
+</html>

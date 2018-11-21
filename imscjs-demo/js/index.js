@@ -31,11 +31,9 @@ function initTTML() {
         var myCue = new Cue(timeEvents[i], timeEvents[i + 1], "");
       } else {
       /*
-      "End" time of last "imsc event" is end video,
-      this may not be know at time of computing
-      therefore we use highest  number possible
+      "End" time of last "imsc event" is end of video
       */
-        var myCue = new Cue(timeEvents[i], Number.MAX_VALUE, "");
+        var myCue = new Cue(timeEvents[i], myVideo.duration, "");
       }
       myCue.onenter = function () {
         clearSubFromScreen();

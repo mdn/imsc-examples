@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title>imscJS example</title>
+  <script src="https://unpkg.com/imsc@1.1.0-beta.2/build/umd/imsc.all.min.js">
+  </script>
+</head>
+
+<body>
+ <div>
+   <h1>IMSC document</h1>
+   <div style="border: 1px solid black; width:640px;">
+     <pre id="xml">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;tt xmlns=&quot;http://www.w3.org/ns/ttml&quot;
+   xmlns:tts=&quot;http://www.w3.org/ns/ttml#styling&quot;
+   xml:lang=&quot;en&quot;&gt;
+ &lt;head&gt;
+   &lt;layout&gt;
+         &lt;region xml:id=&quot;bottom&quot;
+                 tts:fontFamily=&quot;proportionalSansSerif&quot;
+                 tts:extent=&quot;80% 15%&quot;
+                 tts:origin=&quot;10% 75%&quot;
+                 tts:displayAlign=&quot;center&quot;
+                 tts:textAlign=&quot;center&quot;
+                 tts:color=&quot;white&quot;/&gt;
+   &lt;/layout&gt;
+ &lt;/head&gt;
+ &lt;body region=&quot;bottom&quot;&gt;
+   &lt;div tts:backgroundColor=&quot;black&quot;&gt;
+     &lt;p begin=&quot;0s&quot; end=&quot;1s&quot;&gt;O brother…&lt;/p&gt;
+     &lt;p begin=&quot;1s&quot; end=&quot;2s&quot;&gt;… where art thou?&lt;/p&gt;
+   &lt;/div&gt;
+ &lt;/body&gt;
+&lt;/tt&gt;
+</pre>
+   </div>
+ </div>
+ <div>
+   <h1>Render</h1>
+   <div style="border: 1px solid black;height:480px; width:640px;" id="render-div"></div>
+ </div>
+<script>
+      var source = document.getElementById('xml').textContent;
+      var doc = imsc.fromXML(source);
+      var t = doc.getMediaTimeEvents();
+      var isd = imsc.generateISD(doc, t[1]);
+      var vdiv = document.getElementById('render-div');
+      imsc.renderHTML(isd, vdiv);
+</script>
+</body>
+</html>

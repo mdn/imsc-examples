@@ -1,4 +1,3 @@
-
 function initTTML() {
   var renderDiv = document.getElementById("render-div");
   var myVideo = document.getElementById("imscVideo");
@@ -12,12 +11,11 @@ function initTTML() {
 
   var client = new XMLHttpRequest();
 
-  client.open('GET', ttmlUrl);
+  client.open("GET", ttmlUrl);
   client.onreadystatechange = function () {
     initTrack(client.responseText);
-  }
+  };
   client.send();
-
 
   function initTrack(text) {
     var imscDoc = imsc.fromXML(text);
@@ -30,7 +28,7 @@ function initTTML() {
         //We have to provide empty string as VTTText
         var myCue = new Cue(timeEvents[i], timeEvents[i + 1], "");
       } else {
-      /*
+        /*
       "End" time of last "imsc event" is end of video
       */
         var myCue = new Cue(timeEvents[i], myVideo.duration, "");
@@ -53,7 +51,6 @@ function initTTML() {
       renderDiv.removeChild(subtitleActive);
     }
   }
-
 }
 
 window.addEventListener("load", initTTML);

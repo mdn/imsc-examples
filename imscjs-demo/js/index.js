@@ -17,15 +17,13 @@ async function initTTML() {
     const timeEvents = imscDoc.getMediaTimeEvents();
     // Create one cue per timed event and render isd
     for (let i = 0; i < timeEvents.length; i++) {
-      //Edge/IE implement "Generic Cue", other browsers VTTCue
-      const Cue = window.VTTCue || window.TextTrackCue;
       let myCue;
       if (i < timeEvents.length - 1) {
         // We have to provide an empty string as the VTTText
-        myCue = new Cue(timeEvents[i], timeEvents[i + 1], "");
+        myCue = new VTTCue(timeEvents[i], timeEvents[i + 1], "");
       } else {
         // "End" time of the last "imsc event" is the end of the video
-        myCue = new Cue(timeEvents[i], myVideo.duration, "");
+        myCue = new VTTCue(timeEvents[i], myVideo.duration, "");
       }
       myCue.addEventListener("enter", function () {
         clearSubFromScreen();

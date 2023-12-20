@@ -15,7 +15,7 @@ async function initTTML() {
   function initTrack(text) {
     const imscDoc = imsc.fromXML(text);
     const timeEvents = imscDoc.getMediaTimeEvents();
-    // Create one cue per timed event and render isd
+    // Create one cue per timed event and render it
     for (let i = 0; i < timeEvents.length; i++) {
       let myCue;
       if (i < timeEvents.length - 1) {

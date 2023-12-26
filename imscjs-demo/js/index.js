@@ -15,7 +15,10 @@ async function initTTML() {
   function initTrack(text) {
     const imscDoc = imsc.fromXML(text);
     const timeEvents = imscDoc.getMediaTimeEvents();
-    // Create one cue per timed event and render it
+    // Since `TextTrackCue`/`VTTCue` does not support TTML natively, we create one (empty)
+    // cue per event on the timeline of the TTML document. When the cue is triggered 
+    // (`enter` event), we render the TTML document corresponding to the cue time, 
+    // which is called an Intermediary Synchronic Document (ISD), into `renderDiv`.
     for (let i = 0; i < timeEvents.length; i++) {
       let myCue;
       if (i < timeEvents.length - 1) {
